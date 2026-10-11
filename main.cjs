@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Menu, screen, dialog, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, screen, dialog, nativeImage, net } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs/promises');
 const { randomUUID } = require('node:crypto');
@@ -73,7 +73,7 @@ app.whenReady().then(() => {
     const controller = new AbortController(); generation = controller; generated = null;
     const target = studio;
     try {
-      const images = await generatePet({ source: reference, key: options.key, style: options.style, allPoses: options.allPoses === true, signal: controller.signal,
+      const images = await generatePet({ source: reference, key: options.key, style: options.style, allPoses: options.allPoses === true, signal: controller.signal, fetchImpl: (url, options) => net.fetch(url, options),
         progress: value => { if (!target.isDestroyed()) target.webContents.send('studio:progress', value); }
       });
       if (controller.signal.aborted || target.isDestroyed()) throw new Error('已取消生成。');
@@ -81,7 +81,9 @@ app.whenReady().then(() => {
       generated = images;
       return { ok: true, images };
     } catch (error) {
-      return { ok: false, error: controller.signal.aborted ? '已取消生成，当前宠物未改变。' : error.name === 'TimeoutError' ? '生成超时，请稍后重试。' : error.message === 'fetch failed' ? '无法连接图像服务，请检查网络。' : error.message };
+      const networkError = /fetch failed|net::ERR_|Failed to fetch/i.test(error.message);
+      const code = error.message.match(/net::(ERR_[A-Z_]+)/)?.[1];
+      return { ok: false, error: controller.signal.aborted ? '已取消生成，当前宠物未改变。' : error.name === 'TimeoutError' ? '生成超时，请稍后重试。' : networkError ? `无法连接 OpenAI 图像服务${code ? `（${code}）` : ''}。请确认当前网络能够访问 api.openai.com；如需代理，请在 Windows 系统代理中配置后重试。` : error.message };
     } finally { if (generation === controller) generation = null; }
   });
   ipcMain.on('studio:cancel', event => { checkStudio(event); generation?.abort(); });
