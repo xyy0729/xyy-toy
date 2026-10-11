@@ -1,0 +1,9 @@
+{
+  "name": "xyy-desktop-pet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A small floating desktop cat",
+  "main": "main.cjs",
+  "scripts": { "start": "electron .", "test": "node --test", "check": "node --check main.cjs && node --check preload.cjs && node --check renderer.js && node --check ai.cjs && node --check studio.js && node --check studio-preload.cjs" },
+  "devDependencies": { "electron": "^41.0.0" }
+}

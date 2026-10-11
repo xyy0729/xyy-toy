@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>宠物创作室</title>
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <header><span>✦ 桌面伙伴</span><h1>把喜欢的角色，变成陪伴。</h1><p>上传参考图片，生成透明背景的宠物与互动姿势。</p></header>
+  <main>
+    <section class="settings">
+      <h2>1. 选择参考图片</h2>
+      <button id="choose" type="button">选择角色图片</button>
+      <p class="hint">PNG / JPEG / WebP · 最大 10 MB</p>
+      <h2>2. 设置生成方式</h2>
+      <label for="key">OpenAI API 密钥</label>
+      <input id="key" type="password" autocomplete="off" placeholder="仅用于本次启动，不保存到磁盘">
+      <label for="style">宠物画风</label>
+      <select id="style"><option value="chibi">Q 版动漫</option><option value="pixel">像素风</option></select>
+      <label class="checkbox"><input id="poses" type="checkbox" checked>生成互动姿势（待机、开心、吃东西、跳跃、睡觉）</label>
+      <p id="cost" class="hint">完整套装会调用 5 次图像生成 API，按服务商价格收费。</p>
+      <label class="checkbox"><input id="consent" type="checkbox">允许将参考图片发送至 OpenAI 进行生成</label>
+      <div class="buttons"><button id="generate" class="primary" disabled>生成宠物</button><button id="cancel" hidden>取消生成</button></div>
+      <p id="status" role="status" aria-live="polite">先选择一张喜欢的角色图片。</p>
+    </section>
+    <section class="preview">
+      <h2>3. 预览与应用</h2>
+      <div class="image-area"><img id="preview" alt="宠物预览" hidden><span id="empty">你的桌面伙伴将在这里出现</span></div>
+      <div id="variants" aria-label="选择预览姿势"></div>
+      <button id="apply" class="primary" disabled>设为桌面宠物</button>
+      <p class="hint">生成后先预览，确认喜欢再替换当前宠物。</p>
+    </section>
+  </main>
+  <script src="studio.js"></script>
+</body>
+</html>
