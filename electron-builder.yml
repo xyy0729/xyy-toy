@@ -1,0 +1,33 @@
+appId: com.xyy0729.desktop-pet
+productName: 桌面伙伴
+directories:
+  output: dist
+files:
+  - main.cjs
+  - preload.cjs
+  - renderer.js
+  - ai.cjs
+  - index.html
+  - style.css
+  - studio.html
+  - studio.css
+  - studio.js
+  - studio-preload.cjs
+  - assets/**/*
+  - package.json
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+nsis:
+  artifactName: DesktopPet-${version}-${arch}-nsis.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 桌面伙伴
+portable:
+  artifactName: DesktopPet-${version}-${arch}-portable.${ext}

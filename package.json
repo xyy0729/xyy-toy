@@ -4,6 +4,16 @@
   "private": true,
   "description": "A small floating desktop cat",
   "main": "main.cjs",
-  "scripts": { "start": "electron .", "test": "node --test", "check": "node --check main.cjs && node --check preload.cjs && node --check renderer.js && node --check ai.cjs && node --check studio.js && node --check studio-preload.cjs" },
-  "devDependencies": { "electron": "^41.0.0" }
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "check": "node --check main.cjs && node --check preload.cjs && node --check renderer.js && node --check ai.cjs && node --check studio.js && node --check studio-preload.cjs",
+    "dist:win": "electron-builder --win --publish never",
+    "pack:win": "electron-builder --win --dir --publish never"
+  },
+  "devDependencies": {
+    "electron": "^41.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "author": "xyy0729"
 }
