@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>小猫桌面宠物</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div id="bubble" role="status">你好呀，主人！</div>
+    <button id="cat" class="custom" aria-label="宠物：拖动移动，双击互动，右键打开菜单">
+      <span id="effect" aria-hidden="true"></span>
+      <img id="custom-pet" src="assets/character-idle.png" alt="黑色长发、帽子和红色项链的角色宠物" draggable="false">
+      <svg viewBox="0 0 200 180" aria-hidden="true">
+        <ellipse class="shadow" cx="100" cy="167" rx="57" ry="7" fill="#000" opacity=".12"/>
+        <g class="body">
+          <path class="tail" d="M142 145 Q190 149 177 106" fill="none" stroke="#e9ad70" stroke-width="15" stroke-linecap="round"/>
+          <ellipse cx="100" cy="129" rx="47" ry="36" fill="#efbb84"/>
+          <ellipse cx="100" cy="141" rx="27" ry="21" fill="#fff1d9"/>
+          <g class="head">
+            <path d="M48 76 L43 18 Q64 21 79 44 L120 44 Q138 20 157 18 L152 79" fill="#efbb84" stroke="#996442" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M51 29 L55 57 L70 47 Z M149 29 L130 47 L146 57 Z" fill="#f0a5a6"/>
+            <ellipse cx="100" cy="80" rx="57" ry="43" fill="#efbb84"/>
+            <path d="M87 42 L91 58 M100 40 L100 57 M113 42 L109 58" stroke="#ca8a52" stroke-width="5" stroke-linecap="round"/>
+            <g class="eyes" fill="#4c3930"><ellipse cx="77" cy="78" rx="5" ry="7"/><ellipse cx="123" cy="78" rx="5" ry="7"/></g>
+            <ellipse cx="65" cy="93" rx="10" ry="5" fill="#ee9999" opacity=".65"/><ellipse cx="135" cy="93" rx="10" ry="5" fill="#ee9999" opacity=".65"/>
+            <path d="M96 88 L104 88 L100 93 Z" fill="#bb7776"/>
+            <path d="M100 93 Q96 103 89 97 M100 93 Q104 103 111 97" fill="none" stroke="#78503a" stroke-width="2" stroke-linecap="round"/>
+            <path d="M57 88 L33 83 M56 97 L31 100 M143 88 L167 83 M144 97 L169 100" stroke="#996442" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <ellipse cx="76" cy="159" rx="16" ry="9" fill="#fff1d9"/><ellipse cx="124" cy="159" rx="16" ry="9" fill="#fff1d9"/>
+        </g>
+      </svg>
+    </button>
+    <p>拖动 · 双击互动 · 右键换形象</p>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>

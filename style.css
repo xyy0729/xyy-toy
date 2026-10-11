@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: transparent; user-select: none; font-family: system-ui, sans-serif; }
+main { width: 220px; height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 9px; }
+#bubble { background: #fff9ed; border: 1px solid #ecd6bc; color: #72513b; font-size: 13px; border-radius: 14px; padding: 8px 12px; margin-bottom: -3px; min-height: 34px; transition: opacity .3s; }
+#bubble.hidden { opacity: 0; }
+#cat { position: relative; width: 200px; height: 180px; padding: 0; border: none; background: transparent; cursor: grab; touch-action: none; }
+#cat:active { cursor: grabbing; }
+#cat:focus-visible { outline: 2px solid #c48a5c; border-radius: 24px; }
+svg { width: 100%; height: 100%; overflow: visible; }
+#custom-pet { width: 100%; height: 100%; object-fit: contain; pointer-events: none; animation: float 3s ease-in-out infinite; }
+#custom-pet[hidden] { display: none; }
+#cat.custom svg { display: none; }
+#effect { position: absolute; top: 0; right: 12px; font-size: 25px; color: #876eb7; z-index: 1; pointer-events: none; }
+#cat.happy #effect, #cat.eating #effect { animation: sparkle .7s ease-in-out infinite alternate; }
+#cat.happy #custom-pet { animation: nuzzle .3s ease-in-out 4 alternate; }
+#cat.jump svg, #cat.jump #custom-pet { animation: jump .65s ease-in-out 2; }
+#cat.eating svg, #cat.eating #custom-pet { animation: float .35s ease-in-out 4; }
+#cat.sleeping svg, #cat.sleeping #custom-pet { opacity: .7; transform: rotate(-8deg) scale(.93); animation: float 5s ease-in-out infinite; }
+#cat.sleeping .eyes { transform: scaleY(.1); animation: none; }
+.body { transform-origin: 100px 165px; animation: breathe 3s ease-in-out infinite; }
+.eyes { transform-origin: 100px 78px; animation: blink 5s infinite; }
+.tail { transform-origin: 142px 145px; animation: wag 2s ease-in-out infinite; }
+#cat.happy .head { transform-origin: 100px 100px; animation: nuzzle .3s ease-in-out 4 alternate; }
+p { font-size: 10px; color: #78543a; margin: 0; background: #fff5e8dd; border-radius: 8px; padding: 3px 7px; }
+@keyframes breathe { 50% { transform: scaleY(.97); } }
+@keyframes blink { 0%, 44%, 48%, 100% { transform: scaleY(1); } 46% { transform: scaleY(.1); } }
+@keyframes wag { 50% { transform: rotate(12deg); } }
+@keyframes nuzzle { to { transform: rotate(7deg); } }
+@keyframes float { 50% { transform: translateY(-5px); } }
+@keyframes jump { 50% { transform: translateY(-22px) scale(.96, 1.04); } }
+@keyframes sparkle { to { transform: translateY(-10px) scale(1.15); } }
+@media (prefers-reduced-motion: reduce) { *, #cat.happy .head, #cat.happy #custom-pet, #cat.jump svg, #cat.jump #custom-pet, #cat.eating svg, #cat.eating #custom-pet, #cat.sleeping svg, #cat.sleeping #custom-pet { animation: none !important; } }
